@@ -1,5 +1,15 @@
-select p.category,sum(o.total_price) as total_sales,sum(o.quantity) as total_quantity from products p
-inner join orders o on o.product_id=p.product_id
-group by p.category
-having sum(total_price)>2000
-order by total_sales desc;
+create index idx_author on book(author);
+create index on book using hash(genre);
+
+explain analyse select *from book
+where author ilike 'Rowling%';
+
+explain analyse select *from book
+where genre='Fantasy';
+
+create index idx_genre on book(genre);
+
+create index on book using gin(title,description);
+
+cluster book using idx_genre;
+
