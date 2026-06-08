@@ -1,15 +1,14 @@
-create index idx_author on book(author);
-create index on book using hash(genre);
+CREATE OR REPLACE PROCEDURE calculate_order_total (
+    order_id_input INT,
+    OUT total NUMERIC
+)
+    LANGUAGE plpgsql
+AS $$
+BEGIN
+    SELECT quantity * unit_price INTO total
+    FROM order_detail
+    WHERE order_id = order_id_input;
+END;
+$$;
 
-explain analyse select *from book
-where author ilike 'Rowling%';
-
-explain analyse select *from book
-where genre='Fantasy';
-
-create index idx_genre on book(genre);
-
-create index on book using gin(title,description);
-
-cluster book using idx_genre;
-
+call calculate_order_total(102, NULL);
