@@ -1,14 +1,15 @@
-CREATE OR REPLACE PROCEDURE calculate_order_total (
-    order_id_input INT,
-    OUT total NUMERIC
-)
-    LANGUAGE plpgsql
-AS $$
-BEGIN
-    SELECT quantity * unit_price INTO total
-    FROM order_detail
-    WHERE order_id = order_id_input;
-END;
-$$;
+create or replace function update_last_modified()
+returns trigger as $$
+    begin
+        new.last_modified=current_timestamp;
+        return new;
+    end;
+$$ language plpgsql;
 
-call calculate_order_total(102, NULL);
+create or replace trigger trg_update_last_modified
+    before update on products
+    for each row
+    execute function update_last_modified();
+
+update products
+set id=6 where id=5;
