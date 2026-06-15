@@ -1,15 +1,17 @@
-create or replace function update_last_modified()
+create or replace function f_check()
 returns trigger as $$
+    declare
     begin
-        new.last_modified=current_timestamp;
+        insert into customer_log(customer_name, action_time) values
+        (new.name,current_timestamp);
+
         return new;
     end;
 $$ language plpgsql;
 
-create or replace trigger trg_update_last_modified
-    before update on products
+create trigger t_check
+    after insert on customers
     for each row
-    execute function update_last_modified();
+    execute function f_check();
 
-update products
-set id=6 where id=5;
+insert into customers(name, email) VALUES ('Nguyễn Công Hưởng','huongcong@gmail.com');
