@@ -1,38 +1,16 @@
 import java.util.Scanner;
 
-public class Ex41 {
-    public static void BubbleSort(int[] arr ){
-        int n = arr.length;
-        boolean flag = true;
-        for(int i=0;i<n-1;i++){
-            flag = false;
-            for(int j=0;j<n-i-1;j++){
-                if(arr[j]<arr[j+1]){
-                    int temp = arr[j];
-                    arr[j] = arr[j+1];
-                    arr[j+1] = temp;
-                    flag = true;
-                }
-            }
-            if(!flag){
-                break;
-            }
-        }
-    }
+public class Ex51 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập số lượng phần tử của mảng: ");
-        int n = sc.nextInt();
-        System.out.print("Nhập các phần tử của mảng:\n");
-        int[] mang = new int[n];
-        for(int i=1;i<=n;i++){
-            System.out.printf("Phần tử thứ %d: ",i);
-            mang[i-1] = sc.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Nhập địa chỉ email: ");
+        String email = scanner.nextLine().trim();
+        String emailRegex = "^[a-zA-Z0-9._]+@[a-zA-Z0-9.]+\\.[a-zA-Z]{2,6}$";
+        if (email.matches(emailRegex)) {
+            System.out.println("=>Email hợp lệ.");
+        } else {
+            System.out.println("Email không hợp lệ.");
         }
-        BubbleSort(mang);
-        System.out.println("Mảng sau khi sắp xếp giảm dần");
-        for(int i=0;i<n;i++){
-            System.out.print(mang[i]+" ");
-        }
+        scanner.close();
     }
 }
