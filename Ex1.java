@@ -1,16 +1,16 @@
 class Student{
-    int id;
-    String name;
+    String StudentId;
+    String StudentName;
     int age;
-    public Student(int id,String name,int age){
-        this.id=id;
-        this.name=name;
+    public Student(String id,String name,int age){
+        this.StudentId=id;
+        this.StudentName=name;
         this.age=age;
     }
 }
-public class Ex71 {
+public class Ex771 {
     public static void main(String[] args){
-        Student me=new Student(10,"Quang",20);
-        System.out.print("ID: "+me.id+",Name: "+me.name+",Age: "+me.age);
+        Student me=new Student("202517639","Quang",20);
+        System.out.print("ID: "+me.StudentId+",Name: "+me.StudentName+",Age: "+me.age);
     }
 }
