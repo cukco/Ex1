@@ -1,16 +1,21 @@
-class Student{
-    int id;
-    String name;
-    int age;
-    public Student(int id,String name,int age){
-        this.id=id;
-        this.name=name;
-        this.age=age;
+class Animal{
+    protected String name;
+    public void makeSound(){
+        System.out.println("Some animal sound");
     }
 }
-public class Ex71 {
-    public static void main(String[] args){
-        Student me=new Student(10,"Quang",20);
-        System.out.print("ID: "+me.id+",Name: "+me.name+",Age: "+me.age);
+class Dog extends Animal{
+    public Dog(String name){
+        this.name=name;
+    }
+    @Override
+    public void makeSound(){
+        System.out.println("Gâu Gâu");
+    }
+}
+public class Ex101 {
+    public static void main (String[] args){
+        Dog d=new Dog("Pate");
+        d.makeSound();
     }
 }
