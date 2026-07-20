@@ -1,21 +1,73 @@
-class Animal{
-    protected String name;
-    public void makeSound(){
-        System.out.println("Some animal sound");
-    }
+import java.util.ArrayList;
+import java.util.List;
+
+abstract class Shape
+{
+	 String name;
+    abstract double getArea();
+    abstract double getPerimeter();
 }
-class Dog extends Animal{
-    public Dog(String name){
-        this.name=name;
+interface Drawable
+{
+    void draw();
+}
+class Rectangle extends Shape implements Drawable{
+    double width;
+    double height;
+    Rectangle(double width, double height)
+    {
+        this.name="Rectangle";
+        this.width = width;
+        this.height = height;
     }
     @Override
-    public void makeSound(){
-        System.out.println("Gâu Gâu");
+    double getArea()
+    {
+        return width*height;
+    }
+    @Override
+    double getPerimeter()
+    {
+        return 2*width+2*height;
+    }
+    @Override
+    public void draw()
+    {
+        System.out.println("Drawing a rectangle");
     }
 }
-public class Ex101 {
-    public static void main (String[] args){
-        Dog d=new Dog("Pate");
-        d.makeSound();
+class Circle extends Shape implements Drawable {
+    double radius;
+    Circle(double radius)
+    {
+        this.name="Circle";
+        this.radius = radius;
+    }
+    @Override
+    double getArea()
+    {
+        return Math.PI*radius*radius;
+    }
+    @Override
+    double getPerimeter()
+    {
+        return 2*Math.PI*radius;
+    }
+    @Override
+    public void draw()
+    {
+        System.out.println("Drawing a circle");
+    }
+}
+public class Ex1 {
+    public static void main(String[] args) {
+        List<Shape> shapes = new ArrayList<Shape>();
+        shapes.add(new Rectangle(10,20));
+        shapes.add(new Circle(20));
+        for (int i=0;i<shapes.size();i++) {
+            System.out.printf("Name: %s, Area: %.2f, Perimeter: %.2f ",shapes.get(i).name,shapes.get(i).getArea(),shapes.get(i).getPerimeter());
+            Drawable drawable = (Drawable) shapes.get(i);
+            drawable.draw();
+        }
     }
 }
