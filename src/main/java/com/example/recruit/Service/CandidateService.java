@@ -18,8 +18,15 @@ public class CandidateService {
         candidate.setEmail(candidateCreateDTO.getEmail());
         candidate.setAge(candidateCreateDTO.getAge());
         candidate.setYearsOfExperience(candidateCreateDTO.getYearsOfExperience());
-
+        candidate.setPhone(candidateCreateDTO.getPhone());
         candidateRepo.save(candidate);
         return candidate;
+    }
+
+    public Candidate update(int id,String address,String bio){
+        Candidate candidate = candidateRepo.findById(id).orElseThrow(()->new RuntimeException("Candidate not found"));
+        candidate.setAddress(address);
+        candidate.setBio(bio);
+        return candidateRepo.save(candidate);
     }
 }

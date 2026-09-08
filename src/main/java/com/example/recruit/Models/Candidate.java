@@ -22,12 +22,24 @@ public class Candidate {
     @Column(nullable = false,name = "years_of_experience")
     private int yearsOfExperience;
 
-    public Candidate(int id, String fullName, String email, int age, int yearsOfExperience) {
+    @Column
+    private String address;
+
+    @Column
+    private String bio;
+
+    @Column
+    private String phone;
+
+    public Candidate(int id, String fullName, String email, int age, int yearsOfExperience, String address, String bio, String phone) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.age = age;
         this.yearsOfExperience = yearsOfExperience;
+        this.address = address;
+        this.bio = bio;
+        this.phone = phone;
     }
 
     public Candidate() {}
@@ -42,4 +54,10 @@ public class Candidate {
     public void setAge(int age) {this.age = age;}
     public int getYearsOfExperience() {return yearsOfExperience;}
     public void setYearsOfExperience(int yearsOfExperience) {this.yearsOfExperience = yearsOfExperience;}
+    public String getAddress() {return address;}
+    public void setAddress(String address) {this.address = address;}
+    public String getBio() {return bio;}
+    public void setBio(String bio) {this.bio = bio;}
+    public String getPhone() {return phone;}
+    public void setPhone(String phone) {this.phone = phone;}
 }

@@ -2,6 +2,7 @@ package com.example.recruit.DTO;
 
 
 import jakarta.validation.constraints.*;
+import org.springframework.stereotype.Service;
 
 public class CandidateCreateDTO {
     @NotBlank(message = "Tên không được để trống")
@@ -19,11 +20,18 @@ public class CandidateCreateDTO {
     @PositiveOrZero(message = "Số năm kinh nghiệm phải >=0")
     private int yearsOfExperience;
 
-    public CandidateCreateDTO(String fullName, String email, int age, int yearsOfExperience) {
+
+
+    @Pattern(regexp = "^0(3|5|7|8|9)[0-9]{8}$",message = "Số điện thoại không hợp lệ")
+    private String phone;
+
+
+    public CandidateCreateDTO(String fullName, String email, int age, int yearsOfExperience, String phone) {
         this.fullName = fullName;
         this.email = email;
         this.age = age;
         this.yearsOfExperience = yearsOfExperience;
+        this.phone = phone;
     }
 
     public CandidateCreateDTO() {}
@@ -36,5 +44,6 @@ public class CandidateCreateDTO {
     public void setFullName(String fullName) {this.fullName = fullName;}
     public String getEmail() {return email;}
     public void setEmail(String email) {this.email = email;}
-
+    public String getPhone() {return phone;}
+    public void setPhone(String phone) {this.phone = phone;}
 }
